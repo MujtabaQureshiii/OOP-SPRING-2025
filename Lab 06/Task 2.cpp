@@ -7,12 +7,9 @@ protected:
     int speed;
 
 public:
-    Vehicle(string b, int s) {
-        brand = b;
-        speed = s;
-    }
+    Vehicle(string b, int s) : brand(b), speed(s) {}
 
-    void displayVehicleDetails() {
+    void displayDetails() {
         cout << "Brand: " << brand << endl;
         cout << "Speed: " << speed << " km/h" << endl;
     }
@@ -23,12 +20,10 @@ protected:
     int seats;
 
 public:
-    Car(string b, int s, int seat) : Vehicle(b, s) {
-        seats = seat;
-    }
+    Car(string b, int s, int seat) : Vehicle(b, s), seats(seat) {}
 
-    void displayCarDetails() {
-        displayVehicleDetails();
+    void displayDetails() { 
+        Vehicle::displayDetails(); 
         cout << "Seats: " << seats << endl;
     }
 };
@@ -38,20 +33,18 @@ private:
     int batteryLife;
 
 public:
-    ElectricCar(string b, int s, int seat, int battery) : Car(b, s, seat) {
-        batteryLife = battery;
-    }
+    ElectricCar(string b, int s, int seat, int battery) : Car(b, s, seat), batteryLife(battery) {}
 
-    void displayElectricCarDetails() {
-        displayCarDetails();
+    void displayDetails() {  
+        Car::displayDetails();  
         cout << "Battery Life: " << batteryLife << " hours" << endl;
     }
 };
 
 int main() {
-    ElectricCar Car("Tesla", 250, 5, 10);
+    ElectricCar car("Tesla", 250, 5, 10);
     cout << "\nElectric Car Details:\n";
-    Car.displayElectricCarDetails();
+    car.displayDetails();  
 
     return 0;
 }
