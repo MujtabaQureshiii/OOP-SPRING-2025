@@ -7,12 +7,9 @@ protected:
     int age;
 
 public:
-    Person(string n, int a) {
-        name = n;
-        age = a;
-    }
+    Person(string n, int a) : name(n), age(a) {}
 
-    void displayPersonDetails() {
+    void displayDetails() {
         cout << "Name: " << name << endl;
         cout << "Age: " << age << endl;
     }
@@ -23,12 +20,10 @@ protected:
     string subject;
 
 public:
-    Teacher(string n, int a, string sub) : Person(n, a) {
-        subject = sub;
-    }
+    Teacher(string n, int a, string sub) : Person(n, a), subject(sub) {}
 
-    void displayTeacherDetails() {
-        displayPersonDetails();
+    void displayDetails() {
+        Person::displayDetails();
         cout << "Subject: " << subject << endl;
     }
 };
@@ -38,12 +33,10 @@ protected:
     string researchArea;
 
 public:
-    Researcher(string n, int a, string sub, string res) : Teacher(n, a, sub) {
-        researchArea = res;
-    }
+    Researcher(string n, int a, string sub, string res) : Teacher(n, a, sub), researchArea(res) {}
 
-    void displayResearcherDetails() {
-        displayTeacherDetails();
+    void displayDetails() {
+        Teacher::displayDetails();
         cout << "Research Area: " << researchArea << endl;
     }
 };
@@ -53,20 +46,18 @@ private:
     int publications;
 
 public:
-    Professor(string n, int a, string sub, string res, int pub) : Researcher(n, a, sub, res) {
-        publications = pub;
-    }
+    Professor(string n, int a, string sub, string res, int pub) : Researcher(n, a, sub, res), publications(pub) {}
 
-    void displayProfessorDetails() {
-        displayResearcherDetails();
+    void displayDetails() {
+        Researcher::displayDetails();
         cout << "Publications: " << publications << endl;
     }
 };
 
 int main() {
-    Professor prof("Mr.Mujtaba", 45, "Computer Science", "Artificial Intelligence", 25);
+    Professor prof("Mr. Mujtaba", 45, "Computer Science", "Artificial Intelligence", 25);
     cout << "\nProfessor Details:\n";
-    prof.displayProfessorDetails();
+    prof.displayDetails();
 
     return 0;
 }
