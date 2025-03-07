@@ -7,7 +7,7 @@ protected:
     float salary;
 
 public:
-    Employee(string n, float s) : name(n) , salary(s) {}
+    Employee(string n, float s) : name(n), salary(s) {}
 
     void displayDetails() {
         cout << "Name: " << name << endl;
@@ -20,18 +20,18 @@ private:
     float bonus;
 
 public:
-    Manager(string n, float s, float b) : Employee(n, s) , bonus(b) {}
+    Manager(string n, float s, float b) : Employee(n, s), bonus(b) {}
 
-    void displayManagerDetails() {
-        displayDetails();
+    void displayDetails() { 
+        Employee::displayDetails();
         cout << "Bonus: $" << bonus << endl;
     }
 };
 
 int main() {
-    Manager mgr("Mujtaba",50000.0,5000.0);
+    Manager mgr("Mujtaba", 50000.0, 5000.0);
     cout << "\nManager Details:\n";
-    mgr.displayManagerDetails();
+    mgr.displayDetails();
 
     return 0;
 }
